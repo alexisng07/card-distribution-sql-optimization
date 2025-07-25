@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Card Distributor</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <h2>Distribute Playing Cards</h2>
+    <label for="numPeople">Enter number of people:</label>
+    <input type="number" id="numPeople" min="0" />
+    <button id="distributeBtn">Distribute</button>
+    <pre id="result"></pre>
+
+    <script>
+        $('#distributeBtn').click(function () {
+            const people = $('#numPeople').val();
+            $.post('distribute.php', { people }, function (data) {
+                $('#result').text(data);
+            }).fail(function () {
+                $('#result').text("Error occurred during request.");
+            });
+        });
+    </script>
+</body>
+</html>
